@@ -1,6 +1,7 @@
 package model.entities;
 
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -9,8 +10,10 @@ public class Reservation {
 	private Integer roomNumber;
 	private Date checkIn;
 	private Date checkOut;
+	
+	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	
 	public Reservation(Integer roomNumber, Date checkIn, Date checkOut) {
-
 		this.roomNumber = roomNumber;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
@@ -34,7 +37,23 @@ public class Reservation {
 		return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 		
 	}
-	public void updateDates(Datac)	
+	public void updateDates(Date checkIn, Date checkOut) {
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		
+	}
 	
+	@Override
+	public String toString() {
+		return "Rom " 
+				+ roomNumber
+				+ ", check-in: " 
+				+ sdf.format(checkIn)
+				+ ", check-out: "
+				+ sdf.format(checkOut)
+				+ ", "
+				+ duration()
+				+ " nights";
+	}
 	
 }
