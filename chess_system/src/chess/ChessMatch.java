@@ -83,17 +83,18 @@ public class ChessMatch {
 	
 	private Piece makeMove(Position source, Position target) {
 		Piece p = board.removePiece(source);
-		Piece captuPiece = board.removePiece(target);
+		Piece capturedPiece = board.removePiece(target);
 		board.placePiece(p, target);
 		
-		if (capturedPieces != null) {
-			piecesOnTheBoard.remove(capturedPieces);
-			capturedPieces.add(captuPiece);
+		if (capturedPiece != null) {
+			piecesOnTheBoard.remove(capturedPiece);
+			capturedPieces.add(capturedPiece);
+			
 		}
 		
 		
 		
-		return captuPiece;
+		return capturedPiece;
 	}
 	
 	private void undoMove(Position source, Position target, Piece capturedPiece) {
@@ -139,20 +140,20 @@ public class ChessMatch {
 	}
 	
 	private ChessPiece king(Color color) {
-		List<Piece> list = piecesOnTheBoard.stream().filter(x -> ((ChessPiece)x).getColor() == opponent(color)).collect(Collectors.toList());
+		List<Piece> list = piecesOnTheBoard.stream().filter(x -> ((ChessPiece)x).getColor() == color).collect(Collectors.toList());
 		for (Piece p : list) {
 			if (p instanceof King) {
 				return (ChessPiece)p;
 			}
 			
 		}
-		throw new IllegalStateException("There is no " + color + "King on the board");
 		
+		throw new IllegalStateException("There is no " + color + "King on the board");
 	}
 	
 	private boolean testCheck(Color color) {
 		Position kingPosition = king(color).getChessPosition().toPosition();
-		List<Piece> opponentPieces = piecesOnTheBoard.stream().filter(x -> ((ChessPiece)x).getColor() == color).collect(Collectors.toList());
+		List<Piece> opponentPieces = piecesOnTheBoard.stream().filter(x -> ((ChessPiece)x).getColor() == opponent(color)).collect(Collectors.toList());
 		for (Piece p : opponentPieces) {
 			boolean[][] mat = p.possibleMoves();
 			if(mat[kingPosition.getRow()][kingPosition.getColum()]) {
@@ -163,9 +164,12 @@ public class ChessMatch {
 	}
 	
 	
+	
+	
 
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
 		board.placePiece(piece, new ChessPosition(column, row).toPosition());
+		piecesOnTheBoard.add(piece);
 	}
 
 	private void initialSetup() {
