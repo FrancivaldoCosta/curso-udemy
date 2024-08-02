@@ -5,16 +5,16 @@ import boardgame.Position;
 import chess.ChessPiece;
 import chess.Color;
 
-public class Rook extends ChessPiece {
+public class Bishop extends ChessPiece {
 
-	public Rook(Board board, Color color) {
+	public Bishop(Board board, Color color) {
 		super(board, color);
 
 	}
 	
 	@Override
 	public String toString() {
-		return "R";
+		return "B";
 	}
 	
 	@Override
@@ -23,43 +23,43 @@ public class Rook extends ChessPiece {
 		
 		Position p = new Position(0, 0);
 		
-		//ABOVE
-		p.setValues(position.getRow() - 1, position.getColumn());
+		//NW NOROESTE
+		p.setValues(position.getRow() - 1, position.getColumn() - 1);
 		while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
-			p.setRow(p.getRow() - 1);
+			p.setValues(p.getRow() - 1, p.getColumn() - 1);
 		}
 		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 		
 		
-		//LEFT
-				p.setValues(position.getRow(), position.getColumn() - 1);
+		//NE NORDESTE
+				p.setValues(position.getRow() - 1, position.getColumn() + 1);
 				while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 					mat[p.getRow()][p.getColumn()] = true;
-					p.setColum(p.getColumn() - 1);
+					p.setValues(p.getRow() - 1, p.getColumn() + 1);
 				}
 				if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 					mat[p.getRow()][p.getColumn()] = true;
 				}
 		
-				//RIGHT
-				p.setValues(position.getRow(), position.getColumn() + 1);
+				//SE SUDESTE
+				p.setValues(position.getRow() + 1, position.getColumn() + 1);
 				while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 					mat[p.getRow()][p.getColumn()] = true;
-					p.setColum(p.getColumn() + 1);
+					p.setValues(p.getRow() + 1, p.getColumn() + 1);
 				}
 				if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 					mat[p.getRow()][p.getColumn()] = true;
 				}
 				
 				
-				//BELOW
-				p.setValues(position.getRow() + 1, position.getColumn());
+				//SW SUDOESTE
+				p.setValues(position.getRow() + 1, position.getColumn() - 1);
 				while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 					mat[p.getRow()][p.getColumn()] = true;
-					p.setRow(p.getRow() + 1);
+					p.setValues(p.getRow() + 1, p.getColumn() - 1);
 				}
 				if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 					mat[p.getRow()][p.getColumn()] = true;

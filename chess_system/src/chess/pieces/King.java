@@ -28,51 +28,51 @@ public class King extends ChessPiece {
 		Position p = new Position(0, 0);
 
 		// ABOVE
-		p.setValues(position.getRow() - 1, position.getColum());
+		p.setValues(position.getRow() - 1, position.getColumn());
 		if (getBoard().positionExists(p) && canMove(p)) {
-			mat[p.getRow()][p.getColum()] = true;
+			mat[p.getRow()][p.getColumn()] = true;
 		}
 
 		// BELOW
-		p.setValues(position.getRow() + 1, position.getColum());
+		p.setValues(position.getRow() + 1, position.getColumn());
 		if (getBoard().positionExists(p) && canMove(p)) {
-			mat[p.getRow()][p.getColum()] = true;
+			mat[p.getRow()][p.getColumn()] = true;
 		}
 
 		// LEFT
-		p.setValues(position.getRow(), position.getColum() - 1);
+		p.setValues(position.getRow(), position.getColumn() - 1);
 		if (getBoard().positionExists(p) && canMove(p)) {
-			mat[p.getRow()][p.getColum()] = true;
+			mat[p.getRow()][p.getColumn()] = true;
 		}
 
 		// RIGHT
-		p.setValues(position.getRow(), position.getColum() + 1);
+		p.setValues(position.getRow(), position.getColumn() + 1);
 		if (getBoard().positionExists(p) && canMove(p)) {
-			mat[p.getRow()][p.getColum()] = true;
+			mat[p.getRow()][p.getColumn()] = true;
 		}
 
 		// (NW) NOROESTE
-		p.setValues(position.getRow() - 1, position.getColum() - 1);
+		p.setValues(position.getRow() - 1, position.getColumn() - 1);
 		if (getBoard().positionExists(p) && canMove(p)) {
-			mat[p.getRow()][p.getColum()] = true;
+			mat[p.getRow()][p.getColumn()] = true;
 		}
 
 		// (NE) NORDESTE
-		p.setValues(position.getRow() - 1, position.getColum() + 1);
+		p.setValues(position.getRow() - 1, position.getColumn() + 1);
 		if (getBoard().positionExists(p) && canMove(p)) {
-			mat[p.getRow()][p.getColum()] = true;
+			mat[p.getRow()][p.getColumn()] = true;
 		}
 
 		// (SW) SUDOESTE
-		p.setValues(position.getRow() + 1, position.getColum() - 1);
+		p.setValues(position.getRow() + 1, position.getColumn() - 1);
 		if (getBoard().positionExists(p) && canMove(p)) {
-			mat[p.getRow()][p.getColum()] = true;
+			mat[p.getRow()][p.getColumn()] = true;
 		}
 
 		// (SE) SUDESTE
-		p.setValues(position.getRow() + 1, position.getColum() + 1);
+		p.setValues(position.getRow() + 1, position.getColumn() + 1);
 		if (getBoard().positionExists(p) && canMove(p)) {
-			mat[p.getRow()][p.getColum()] = true;
+			mat[p.getRow()][p.getColumn()] = true;
 		}
 
 		return mat;
